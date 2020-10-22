@@ -13,10 +13,10 @@ public class ExploreQueue {
 		i.add(ten);
 		i.add(7);
 		i.add(ten);
-		i.offer(98);
-		i.offer(64);
-		i.offer(1);
-		i.offer(79);
+		i.add(98);
+		i.add(64);
+		i.add(1);
+		i.add(79);
 		
 		Integer firstInLine = i.remove();
 		
@@ -25,10 +25,10 @@ public class ExploreQueue {
 		pq.add(ten);
 		pq.add(7);
 		pq.add(ten);
-		pq.offer(98);
-		pq.offer(64);
-		pq.offer(1);
-		pq.offer(79);
+		pq.add(98);
+		pq.add(64);
+		pq.add(1);
+		pq.add(79);
 		
 		pq.remove(ten);
 		
