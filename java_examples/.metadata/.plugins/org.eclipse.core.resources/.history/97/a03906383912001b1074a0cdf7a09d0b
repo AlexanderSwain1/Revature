@@ -1,0 +1,11 @@
+package mypack;
+
+public class MyFirstClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("mama, mama, mama.");
+		System.out.println("WHAT!!!!");
+		System.out.println("Hi.");
+	}
+}

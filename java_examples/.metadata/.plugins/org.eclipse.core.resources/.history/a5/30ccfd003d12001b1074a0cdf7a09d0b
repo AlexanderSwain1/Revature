@@ -1,0 +1,52 @@
+package mypack;
+
+public class MyFirstClass {
+
+	public static void main(String[] args) {
+		DataTypes();
+	}
+	
+	public static void HelloWorld()
+	{
+		// TODO Auto-generated method stub
+		System.out.println("mama, mama, mama.");
+		System.out.println("WHAT!!!!");
+		System.out.println("Hi.");
+	}
+	
+	/**
+	 * datatype			size		defaultValue
+	 * byte 			1byte		0
+	 * short			2			0
+	 * int				4			0
+	 * long				8			0
+	 * 
+	 * float			4			0.0000f
+	 * double			8			0.0000d
+	 * 
+	 * char				2			'\u00000 - https://unicode-table.com/en/#basic-latin
+	 * boolean			1bit		false
+	 */
+	public static void DataTypes()
+	{
+		int x = 10;
+		System.out.println("x = " + x);
+		
+		float f1 = 12.3f;
+		System.out.println("f1 = " + f1);
+		
+		double d1 = 22.333d;
+		System.out.println("d1 = " + d1);
+		
+		long contact = 1234567899L;
+		System.out.println("contact = " + contact);
+		
+		boolean b = false;
+		System.out.println("b = " + b);
+		
+		//java programmers love to type XD
+		//Please note that String is a class not a primitive data type
+		String s = "Hello String";
+		System.out.println("s = " + s);
+	}
+}

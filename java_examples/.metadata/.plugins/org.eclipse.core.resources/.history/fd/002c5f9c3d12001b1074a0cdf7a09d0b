@@ -1,0 +1,12 @@
+package mypack;
+
+public class StaticNonstatic {
+	public static void myStaticMethod()
+	{
+		System.out.println("Hello from myStaticMethod()");
+	}
+	public void myNonStaticMethod()
+	{
+		System.out.println("Hello from myNonStaticMethod()");
+	}
+}

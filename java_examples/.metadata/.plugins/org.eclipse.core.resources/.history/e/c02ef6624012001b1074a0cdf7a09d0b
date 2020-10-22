@@ -1,0 +1,13 @@
+package eg4;
+
+public class Product {
+	int x;
+	int y;
+	static int z;
+	
+	public static void main(String[] args)
+	{
+		
+	}
+
+}
