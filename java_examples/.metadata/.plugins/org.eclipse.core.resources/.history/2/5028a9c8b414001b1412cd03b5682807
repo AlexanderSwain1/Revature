@@ -1,8 +1,9 @@
+package eg6;
 
-public class StringBufferAssignment {
+public class LastCharUppercase {
 
 	public static void main(String[] args) {
-
+		// TODO Auto-generated method stub
 		String toConvert = "hello have a great day";
 		StringBuilder sb = new StringBuilder();
 		
@@ -14,6 +15,7 @@ public class StringBufferAssignment {
 			.append(" ");
 		}
 		System.out.println("Result : " + sb.toString().trim());
+		
 	}
 
 }

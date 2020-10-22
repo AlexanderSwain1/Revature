@@ -1,4 +1,2 @@
 INDEX VERSION 1.131+C:\Users\lexxa\OneDrive\Desktop\Revature\temp repo\java_examples\.metadata\.plugins\org.eclipse.jdt.core
-2697681246.index
-2578939982.index
 3355152744.index
