@@ -1,11 +1,12 @@
 package consoleApp.Views;
 
-import consoleApp.Program;
 import consoleApp.Util.ViewUtilities;
+import consoleApp.View.View;
 import consoleApp.models.Account;
 
-public class EmployeeAccountView implements View
+public class EmployeeAccountView extends View
 {
+	
 	private Account model;
 	
 	public EmployeeAccountView(Account account)
@@ -15,21 +16,24 @@ public class EmployeeAccountView implements View
 	
 	public View navigate() 
 	{
-		System.out.print("Logged in as lexxas@live.com.\n" +
-					"1) View Account Balance.\n" + 
+		log.info("\n----------------Employee----------------\n" + 
+				"Logged in as " + model.getEmail() +"\n" +
+					"1) View Balance of Other Account.\n" + 
 					"2) Pending Accounts\n" + 
-					"3) Log out.\n" + 
-					"How may I help you?: ");
+					"3) View all transactions.\n" + 
+					"4) Log out.\n");
 			
-		String response = Program.consoleScanner.next().trim();//fix
-			
-		switch (Integer.parseInt(response))
+		int response = ViewUtilities.getIntResponse(scanner);
+		
+		switch (response)
 		{
 			case 1:
-				return this;
+				return new MemberSelectorView(model);
 			case 2:
 				return new PendingAccountsView(model);
 			case 3:
+				return new TransactionsView(model);
+			case 4:
 				return new MainView();
 			default:
 				ViewUtilities.showInvalidInputMessage();

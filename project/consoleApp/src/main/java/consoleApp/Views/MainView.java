@@ -1,23 +1,23 @@
 package consoleApp.Views;
 
-import consoleApp.Program;//fix
 import consoleApp.Util.ViewUtilities;
+import consoleApp.View.View;
 
-public class MainView implements View
+public class MainView extends View
 {
 
 	public View navigate() 
 	{
-		System.out.print("Welcome to Bank™.\n" +
+		log.info("\n-----------Account Login-----------\n" + 
+					"Welcome to Bank™.\n" +
 					"1) Login.\n" + 
 					"2) Create a Customer Account.\n" + 
 					"3) Create an Employee Account.\n" + 
-					"4) Exit.\n" +
-					"How may I help you?: ");
+					"4) Exit.\n");
 			
-		String response = Program.consoleScanner.next().trim();//fix
-			
-		switch (Integer.parseInt(response))
+		int response = ViewUtilities.getIntResponse(scanner);
+
+		switch (response)
 		{
 			case 1:
 				return new LoginView();

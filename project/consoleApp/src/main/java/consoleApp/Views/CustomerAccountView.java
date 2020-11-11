@@ -1,11 +1,15 @@
 package consoleApp.Views;
 
-import consoleApp.Program;
 import consoleApp.Util.ViewUtilities;
+import consoleApp.View.View;
+import consoleApp.daoImpl.Member_DatabaseContext;
+import consoleApp.exception.DataAccessException;
 import consoleApp.models.Account;
+import consoleApp.models.Member;
 
-public class CustomerAccountView implements View
+public class CustomerAccountView extends View
 {
+	
 	private Account model;
 	
 	public CustomerAccountView(Account account)
@@ -15,25 +19,45 @@ public class CustomerAccountView implements View
 	
 	public View navigate() 
 	{
-		System.out.print("Logged in as " + model.getEmail() + ".\n" +
-					"1) View Balance.\n" + 
-					"2) Withdraw.\n" + 
-					"3) Deposit.\n" + 
-					"4) Exit.\n" +
-					"How may I help you?: ");
+		Member_DatabaseContext memberDAO = new Member_DatabaseContext();
+		
+		Member member = null;
+		try 
+		{
+			member = memberDAO.getMember(model);
+		}
+		catch (DataAccessException e) 
+		{
+			log.info("An error has occured. Please try again later." + "\n");
+			log.error(e.getMessage());
+		}
+		
+		log.info("\n-----------------Member-----------------\n" + 
+					"Logged in as " + model.getEmail() + ".\n" +
+					"Account balance: $" + member.getBalance() + "\n" + 
+					"1) Withdraw.\n" + 
+					"2) Deposit.\n" + 
+					"3) Transfer.\n" + 
+					"4) Approve or Reject Transfer.\n" + 
+					"5) View other Account.\n" +
+					"6) Exit.\n");
 			
-		String response = Program.consoleScanner.next().trim();//fix
+		int response = ViewUtilities.getIntResponse(scanner);
 			
-		switch (Integer.parseInt(response))
+		switch (response)
 		{
 			case 1:
-				return this;
+				return new WithdrawalView(model, member);
 			case 2:
-				return this;
+				return new DepositView(model, member);
 			case 3:
-				return this;
+				return new TransferView(model, member);
 			case 4:
-				return null;
+				return new PendingTransfersView(model, member);
+			case 5:
+				return new MemberSelectorView(model);
+			case 6:
+				return new MainView();
 			default:
 				ViewUtilities.showInvalidInputMessage();
 				return this;

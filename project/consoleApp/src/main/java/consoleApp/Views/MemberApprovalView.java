@@ -1,15 +1,14 @@
 package consoleApp.Views;
 
-import java.util.ArrayList;
-
-import consoleApp.Program;
-import consoleApp.dao.Account_DatabaseContext;
-import consoleApp.dao.Member_DatabaseContext;
+import consoleApp.Util.ViewUtilities;
+import consoleApp.View.View;
+import consoleApp.daoImpl.Account_DatabaseContext;
+import consoleApp.daoImpl.Member_DatabaseContext;
 import consoleApp.exception.DataAccessException;
 import consoleApp.models.Account;
 import consoleApp.models.Member;
 
-public class MemberApprovalView implements View
+public class MemberApprovalView extends View
 {
 	private Account employeeAccount;
 	private Member model;
@@ -32,28 +31,50 @@ public class MemberApprovalView implements View
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			log.info("An error has occured. Please try again later.\n");
+			log.error(e.getMessage());
 		}
 		
-		System.out.print("Approve or reject new user: " + account.getEmail() + "\n" + 
+		log.info("\n--------------------------------------------\n" + 
+				"Approve or reject new user: " + account.getEmail() + "\n" + 
 				"1) Approve\n" + 
-				"2) Reject\n");
+				"2) Reject\n" + 
+				"3) Cancel\n");
 		
-		System.out.print("Please Choose an Option: ");
-		int response = Integer.parseInt(Program.consoleScanner.next().trim());//fix
+		int response = ViewUtilities.getIntResponse(scanner);
 		
-		try
+		switch (response)
 		{
-			if (response == 1)
-				memberDAO.approveMember(model);
-			else if (response == 2)
-				memberDAO.rejectMember(model);
+			case 1:
+				try 
+				{
+					memberDAO.approveMember(model);
+				} 
+				catch (DataAccessException e) 
+				{
+					log.info("An error has occured when approving member. Please try again.\n");
+					log.error(e.getMessage());
+				}
+				return new EmployeeAccountView(employeeAccount);
+				
+			case 2:
+				try 
+				{
+					memberDAO.rejectMember(model);
+				} 
+				catch (DataAccessException e) 
+				{
+					log.info("An error has occured when rejecting member. Please try again.\n");
+					log.error(e.getMessage());
+				}
+				return new EmployeeAccountView(employeeAccount);
+				
+			case 3:
+				return new PendingAccountsView(employeeAccount);
+				
+			default:
+				ViewUtilities.showInvalidInputMessage();
+				return new PendingAccountsView(employeeAccount);
 		}
-		catch (Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-		
-		return new EmployeeAccountView(employeeAccount);
 	}
 }

@@ -1,24 +1,25 @@
 package consoleApp.Views;
 
-import consoleApp.Program;
 import consoleApp.Util.ViewUtilities;
-import consoleApp.dao.Account_DatabaseContext;
-import consoleApp.dao.Member_DatabaseContext;
+import consoleApp.View.View;
+import consoleApp.daoImpl.Account_DatabaseContext;
+import consoleApp.daoImpl.Member_DatabaseContext;
 import consoleApp.exception.DataAccessException;
 import consoleApp.models.Account;
 
-public class CreateCustomerAccountView implements View
+public class CreateCustomerAccountView extends View
 {
 	public View navigate() 
 	{
-		System.out.print("Enter your email: ");
-		String email = Program.consoleScanner.next().trim();//fix
-			
-		System.out.print("Enter your password: ");
-		String password = Program.consoleScanner.next().trim();//fix
+		log.info("\n-------------Create Customer-------------\n");
+		log.info("Enter your email: ");
+		String email = scanner.next().trim();
 		
-		System.out.print("Account cannot be created with an empty balance.\nHow much do you want to deposit: ");
-		double balance = Double.parseDouble(Program.consoleScanner.next().trim());//fix
+		log.info("Enter your password: ");
+		String password = scanner.next().trim();
+		
+		log.info("Accounts cannot be created with an empty balance.\n");
+		double balance = ViewUtilities.getDoubleResponse(scanner, "How much do you want to deposit: $");
 		
 		Account newAccount = new Account(0, email, password, Account.Role.Customer);
 		Account_DatabaseContext accountDAO = new Account_DatabaseContext();
@@ -27,19 +28,21 @@ public class CreateCustomerAccountView implements View
 		try 
 		{
 			accountDAO.createAccount(newAccount);
+			try 
+			{
+				memberDAO.createMember(newAccount, balance);
+				log.info("Your new account is awaiting approval.\n");
+			} 
+			catch (DataAccessException e) 
+			{
+				log.info("An error has occured. Please try again" + "\n");
+				log.error(e.getMessage());
+			}
 		} 
 		catch (DataAccessException e) 
 		{
-			System.out.println(e);
-		}
-		
-		try 
-		{
-			memberDAO.createMember(newAccount, balance);
-		} 
-		catch (DataAccessException e) 
-		{
-			System.out.println(e);
+			log.info("Account's email is already in use. Account registration failed." + "\n");
+			log.error(e.getMessage());
 		}
 		
 		return new MainView();

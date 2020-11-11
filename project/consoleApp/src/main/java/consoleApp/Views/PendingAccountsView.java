@@ -1,17 +1,19 @@
 package consoleApp.Views;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import consoleApp.Program;
 import consoleApp.Util.ViewUtilities;
-import consoleApp.dao.Account_DatabaseContext;
-import consoleApp.dao.Member_DatabaseContext;
+import consoleApp.View.View;
+import consoleApp.daoImpl.Account_DatabaseContext;
+import consoleApp.daoImpl.Member_DatabaseContext;
 import consoleApp.exception.DataAccessException;
 import consoleApp.models.Account;
 import consoleApp.models.Member;
 
-public class PendingAccountsView implements View
+public class PendingAccountsView extends View
 {
+	
 	private Account model;
 	
 	public PendingAccountsView(Account model)
@@ -25,17 +27,18 @@ public class PendingAccountsView implements View
 		Member_DatabaseContext memberDAO = new Member_DatabaseContext();
 		
 		//change to List interface, require upgrade to Java 8
-		ArrayList<Member> pendingMembers = new ArrayList<Member>();
+		List<Member> pendingMembers = new ArrayList<Member>();
 		try 
 		{
 			pendingMembers = memberDAO.getPendingMembers();
 		} 
 		catch (DataAccessException e1) 
 		{
-			System.out.println(e1.getMessage());
+			log.info("An error has occured. Please try again later.\n");
+			log.error(e1.getMessage());
 		}
 		
-		System.out.print("Logged in as lexxas@live.com.\n");
+		log.info("\n-------------Pending Accounts--------------\n");
 		
 		if (pendingMembers.size() > 0)
 			for (int i = 0; i < pendingMembers.size(); i++)
@@ -43,29 +46,39 @@ public class PendingAccountsView implements View
 				Account account = null;
 				try 
 				{
-				account = accountDAO.getAccount(pendingMembers.get(i));
+					account = accountDAO.getAccount(pendingMembers.get(i));
+					if (account != null)
+						log.info((i + 1) + ") " + account.getEmail() + "\n");
+					else//should be unreachable
+					{
+						log.info((i + 1) + ") [Ghost Account]" + "\n");
+						log.error("[Ghost Account] There's a record with an id of 0 somewhere");
+					}
 				}
-				catch (Exception e)
+				catch (DataAccessException e)
 				{
-					System.out.println(e.getMessage());
+					log.info((i + 1) + ") " + "Error retreiving pending account." + "\n");
+					log.error(e.getMessage());
 				}
-				System.out.println(i + ") " + account.getEmail());
 			}
 		else
 		{
-			System.out.println("There are no new accounts");
+			log.info("There are no new members (customer accounts)\n");
 			return new EmployeeAccountView(model);
 		}
 		
-		System.out.println(pendingMembers.size() + ") Cancel");
+		log.info((pendingMembers.size() + 1) + ") Cancel" + "\n");
 		
-		System.out.print("Please Choose an Option: ");
-		int response = Integer.parseInt(Program.consoleScanner.next().trim());//fix
-		
+		int response = ViewUtilities.getIntResponse(scanner) - 1;
 
 		if (response >= 0 && response < pendingMembers.size())
 			return new MemberApprovalView(model, pendingMembers.get(response));
-		
-		return new EmployeeAccountView(model);
+		else if (response == pendingMembers.size())
+			return new EmployeeAccountView(model);
+		else
+		{
+			ViewUtilities.showInvalidInputMessage();
+			return new EmployeeAccountView(model);
+		}
 	}
 }

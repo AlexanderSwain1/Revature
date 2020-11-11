@@ -1,0 +1,47 @@
+[ERROR]        consoleApp.daoImpl.Transfer_DatabaseContext       ERROR: column "isapproved" does not exist
+  Hint: Perhaps you meant to reference the column "transfer.is_approved".
+  Position: 69             11-November-2020 Wednesday EST 10:49:58                
+[ERROR]        consoleApp.Views.PendingTransfersView       A failed to execute query on database.             11-November-2020 Wednesday EST 10:49:58                
+[ERROR]        consoleApp.daoImpl.Transfer_DatabaseContext       ERROR: column "isapproved" does not exist
+  Hint: Perhaps you meant to reference the column "transfer.is_approved".
+  Position: 69             11-November-2020 Wednesday EST 10:51:48                
+[ERROR]        consoleApp.Views.PendingTransfersView       A failed to execute query on database.             11-November-2020 Wednesday EST 10:51:48                
+[ERROR]        consoleApp.daoImpl.Transfer_DatabaseContext       FATAL: sorry, too many clients already             11-November-2020 Wednesday EST 13:18:08                
+[ERROR]        consoleApp.Views.TransactionsView       A failed to execute query on database.             11-November-2020 Wednesday EST 13:18:08                
+[ERROR]        consoleApp.daoImpl.Account_DatabaseContext       FATAL: sorry, too many clients already             11-November-2020 Wednesday EST 13:20:03                
+[ERROR]        consoleApp.Views.LoginView       A failed to execute query on database.             11-November-2020 Wednesday EST 13:20:03                
+[ERROR]        consoleApp.daoImpl.Account_DatabaseContext       Cannot commit when autoCommit is enabled.             11-November-2020 Wednesday EST 13:39:41                
+[ERROR]        consoleApp.Views.LoginView       Failed to close connection.             11-November-2020 Wednesday EST 13:39:41                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "water@live.com"             11-November-2020 Wednesday EST 14:03:44                
+[ERROR]        consoleApp.Views.DepositView       Withdrawal amount must be greater than 0             11-November-2020 Wednesday EST 14:14:49                
+[ERROR]        consoleApp.Views.TransferView       Cannot transfer money to yourself.             11-November-2020 Wednesday EST 14:15:33                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "asdf"             11-November-2020 Wednesday EST 14:16:46                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "asdf"             11-November-2020 Wednesday EST 14:17:16                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "asdf"             11-November-2020 Wednesday EST 14:17:18                
+[ERROR]        consoleApp.Views.WithdrawalView       Withdrawal amount must be greater than 0             11-November-2020 Wednesday EST 14:34:57                
+[ERROR]        consoleApp.Views.WithdrawalView       Insufficient funds             11-November-2020 Wednesday EST 14:35:07                
+[ERROR]        consoleApp.Views.TransferView       Withdrawal amount must be greater than 0             11-November-2020 Wednesday EST 14:46:54                
+[ERROR]        consoleApp.Views.TransferView       Withdrawal amount must be greater than 0             11-November-2020 Wednesday EST 14:47:41                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "asdf"             11-November-2020 Wednesday EST 15:21:06                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "asdf"             11-November-2020 Wednesday EST 15:22:54                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "asdf"             11-November-2020 Wednesday EST 15:23:00                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "asdf"             11-November-2020 Wednesday EST 15:23:19                
+[ERROR]        consoleApp.Views.WithdrawalView       For input string: "asdf"             11-November-2020 Wednesday EST 15:23:39                
+[ERROR]        consoleApp.Views.DepositView       For input string: "asdf"             11-November-2020 Wednesday EST 15:23:47                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "earth@live.com"             11-November-2020 Wednesday EST 15:24:00                
+[ERROR]        consoleApp.Util.ViewUtilities       For input string: "water@live.com"             11-November-2020 Wednesday EST 15:26:20                
+[ERROR]        consoleApp.daoImpl.Account_DatabaseContext       ERROR: duplicate key value violates unique constraint "account_un"
+  Detail: Key (email)=(lexxas@live.com) already exists.             11-November-2020 Wednesday EST 16:07:48                
+[ERROR]        consoleApp.Views.CreateCustomerAccountView       A failed to execute query on database.             11-November-2020 Wednesday EST 16:07:48                
+[ERROR]        consoleApp.daoImpl.Account_DatabaseContext       ERROR: duplicate key value violates unique constraint "account_un"
+  Detail: Key (email)=(water@live.com) already exists.             11-November-2020 Wednesday EST 16:08:39                
+[ERROR]        consoleApp.Views.CreateEmployeeAccountView       A failed to execute query on database.             11-November-2020 Wednesday EST 16:08:39                
+[ERROR]        consoleApp.daoImpl.Account_DatabaseContext       ERROR: duplicate key value violates unique constraint "account_un"
+  Detail: Key (email)=(water@live.com) already exists.             11-November-2020 Wednesday EST 16:09:21                
+[ERROR]        consoleApp.Views.CreateEmployeeAccountView       A failed to execute query on database.             11-November-2020 Wednesday EST 16:09:21                
+[ERROR]        consoleApp.daoImpl.Account_DatabaseContext       ERROR: duplicate key value violates unique constraint "account_un"
+  Detail: Key (email)=(boss3@live.com) already exists.             11-November-2020 Wednesday EST 16:15:39                
+[ERROR]        consoleApp.Views.CreateEmployeeAccountView       A failed to execute query on database.             11-November-2020 Wednesday EST 16:15:39                
+[ERROR]        consoleApp.daoImpl.Account_DatabaseContext       ERROR: duplicate key value violates unique constraint "account_un"
+  Detail: Key (email)=(boss3@live.com) already exists.             11-November-2020 Wednesday EST 16:16:05                
+[ERROR]        consoleApp.Views.CreateCustomerAccountView       A failed to execute query on database.             11-November-2020 Wednesday EST 16:16:05                
