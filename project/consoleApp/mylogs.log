@@ -45,3 +45,4 @@
 [ERROR]        consoleApp.daoImpl.Account_DatabaseContext       ERROR: duplicate key value violates unique constraint "account_un"
   Detail: Key (email)=(boss3@live.com) already exists.             11-November-2020 Wednesday EST 16:16:05                
 [ERROR]        consoleApp.Views.CreateCustomerAccountView       A failed to execute query on database.             11-November-2020 Wednesday EST 16:16:05                
+[ERROR]        consoleApp.Views.WithdrawalView       Insufficient funds             12-November-2020 Thursday EST 10:00:57                

@@ -40,7 +40,7 @@ public class CustomerAccountView extends View
 					"3) Transfer.\n" + 
 					"4) Approve or Reject Transfer.\n" + 
 					"5) View other Account.\n" +
-					"6) Exit.\n");
+					"6) Log out.\n");
 			
 		int response = ViewUtilities.getIntResponse(scanner);
 			
